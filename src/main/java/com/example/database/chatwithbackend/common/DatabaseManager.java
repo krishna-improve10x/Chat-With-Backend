@@ -1,8 +1,9 @@
 package com.example.database.chatwithbackend.common;
 
 import java.sql.*;
+import java.util.List;
 
-public abstract class DatabaseManager {
+public abstract class DatabaseManager<T> {
 
     protected Connection createConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -12,14 +13,14 @@ public abstract class DatabaseManager {
         return DriverManager.getConnection(url, name, password);
     }
 
-    protected Object runQuery(String query) throws SQLException, ClassNotFoundException {
+    protected List<T> runQuery(String query) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
-        Object result = convertToObject(resultSet);
+        List<T> result = convertToObject(resultSet);
         connection.close();
         return result;
     }
 
-    protected abstract Object convertToObject(ResultSet resultSet) throws SQLException;
+    protected abstract List<T> convertToObject(ResultSet resultSet) throws SQLException;
 }
