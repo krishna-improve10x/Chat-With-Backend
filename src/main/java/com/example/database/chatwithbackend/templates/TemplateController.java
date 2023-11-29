@@ -1,4 +1,4 @@
-package com.example.database.tables.template;
+package com.example.database.chatwithbackend.templates;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +13,7 @@ public class TemplateController {
     @Autowired
     TemplateService templateService;
 
-    @GetMapping(value = "templateList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "listOfTemplates", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Template> getTemplates() {
         return templateService.getTemplates();
     }

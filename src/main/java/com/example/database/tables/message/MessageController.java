@@ -1,5 +1,4 @@
 package com.example.database.tables.message;
-
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +10,7 @@ import java.util.List;
 @RestController
 public class MessageController {
 
-    @GetMapping(value = "listOfMessages", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "messageList", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Message> getMessageList(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

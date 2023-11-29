@@ -1,4 +1,4 @@
-package com.example.database.tables.template;
+package com.example.database.chatwithbackend.templates;
 
 public class Template {
 

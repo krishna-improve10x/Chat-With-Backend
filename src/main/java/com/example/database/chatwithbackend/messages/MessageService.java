@@ -1,4 +1,4 @@
-package com.example.database.tables.dbConnection.message;
+package com.example.database.chatwithbackend.messages;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,8 +8,8 @@ import java.util.List;
 @Service
 public class MessageService {
     @Autowired
-    DatabaseManager databaseManager;
+    MessagesDbManager messagesDbManager;
     public List<Message> getMessages(){
-        return databaseManager.saveMessageData();
+        return messagesDbManager.getMessages();
     }
 }

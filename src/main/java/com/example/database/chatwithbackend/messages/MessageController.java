@@ -1,8 +1,9 @@
-package com.example.database.tables.dbConnection.message;
+package com.example.database.chatwithbackend.messages;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,10 +14,11 @@ import java.util.List;
 public class MessageController {
 
     @Autowired
-     MessageService messageService;
+    MessageService messageService;
 
     @GetMapping(value = "listOfMessages", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Message> getMessages(){
+        System.out.println("Hi");
         return messageService.getMessages();
     }
 }

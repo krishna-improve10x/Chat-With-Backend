@@ -1,4 +1,4 @@
-package com.example.database.tables.dbConnection.message;
+package com.example.database.chatwithbackend.messages;
 
 public class Message {
 
