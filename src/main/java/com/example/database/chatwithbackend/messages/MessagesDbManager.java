@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class MessagesDbManager extends DatabaseManager<Message> {
 
-    public List<Message> getMessages(){
+    public List<Message> getMessages() {
         try {
-            List<Message> messages = runQuery("SELECT  * FROM Message");
+            List<Message> messages = runQuery("SELECT * FROM Message");
             return messages;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -23,10 +23,11 @@ public class MessagesDbManager extends DatabaseManager<Message> {
         }
     }
 
+
     @Override
-    protected List<Message> convertToObject(ResultSet resultSet) throws SQLException{
+    protected List<Message> convertToObject(ResultSet resultSet) throws SQLException {
         List<Message> messages = new ArrayList<>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Message message = new Message();
             message.MessageId = resultSet.getInt(1);
             message.name = resultSet.getString(2);
@@ -35,5 +36,26 @@ public class MessagesDbManager extends DatabaseManager<Message> {
             messages.add(message);
         }
         return messages;
+    }
+
+    public int updateMessage(int messageId, String name, String mobileNumber) {
+        try {
+            int result = updateRunQuery("UPDATE Message SET name = '" + name + "', mobileNumber = '" + mobileNumber + "' WHERE messageId= " + messageId + ";");
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteMessage(int messageId) {
+        try {
+            deleteRunQuery("DELETE FROM Message WHERE messageId = '"+messageId+"';");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

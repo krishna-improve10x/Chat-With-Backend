@@ -9,7 +9,16 @@ import java.util.List;
 public class MessageService {
     @Autowired
     MessagesDbManager messagesDbManager;
-    public List<Message> getMessages(){
+
+    public List<Message> getMessages() {
         return messagesDbManager.getMessages();
+    }
+
+    public int updateMessage(int messageId, String name, String mobileNumber) {
+        return messagesDbManager.updateMessage(messageId, name, mobileNumber);
+    }
+
+    public void deleteMessage(int messageId) {
+        messagesDbManager.deleteMessage(messageId);
     }
 }

@@ -33,4 +33,25 @@ public class TemplatesDbManager extends DatabaseManager<Template> {
         }
         return templates;
     }
+
+    public int updateTemplate(int templateId, String messageText) {
+        try {
+            int result = updateRunQuery("UPDATE Template SET messageText = '"+messageText+"'WHERE templateId = "+templateId+"");
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteTemplate(int templateId){
+        try {
+            deleteRunQuery("DELETE FROM Template WHERE templateId = '"+templateId+"'");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

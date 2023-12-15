@@ -2,10 +2,7 @@ package com.example.database.chatwithbackend.messages;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +14,17 @@ public class MessageController {
     MessageService messageService;
 
     @GetMapping(value = "listOfMessages", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Message> getMessages(){
-        System.out.println("Hi");
+    public List<Message> getMessages() {
         return messageService.getMessages();
+    }
+
+    @PutMapping(value = "updateMessage/{id}/name/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public int updateMessage(@PathVariable("id") int messageId, @RequestParam("name") String name, @RequestParam String mobileNumber) {
+        return messageService.updateMessage(messageId, name, mobileNumber);
+    }
+
+    @DeleteMapping(value = "deleteMessage/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteMessage(@PathVariable("id") int messageId){
+        messageService.deleteMessage(messageId);
     }
 }

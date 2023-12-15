@@ -14,4 +14,12 @@ public class TemplateService {
     public List<Template> getTemplates() {
         return templatesDbManager.getTemplates();
     }
+
+    public int updateTemplate(int templateId, String messageText) {
+        return templatesDbManager.updateTemplate(templateId,messageText);
+    }
+
+    public void deleteTemplate(int templateId){
+        templatesDbManager.deleteTemplate(templateId);
+    }
 }
